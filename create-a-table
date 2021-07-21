@@ -1,0 +1,58 @@
+CREATE TABLE friends (
+  id INTEGER,
+  name TEXT,
+  birthday DATE
+);
+
+/*First part works*/
+
+INSERT INTO friends (id, name, birthday)
+VALUES (1, 'Ororo Munroe', '1940-05-30');
+
+/*Second part works*/
+
+INSERT INTO friends (id, name, birthday)
+VALUES (2, 'Dolores Abernathy', '2015-10-02');
+
+/*Third part works*/
+
+INSERT INTO friends (id, name, birthday)
+VALUES (3, 'Maeve Millay', '2016-10-02');
+
+/*Fourth part works*/
+
+UPDATE friends
+SET name = 'Storm'
+WHERE id = 1;
+
+/*Fifth part works*/
+
+ALTER TABLE friends
+ADD COLUMN email TEXT;
+
+/*Sixth part works*/
+
+UPDATE friends
+SET email = 'storm@codecademy.com'
+WHERE id = 1;
+
+/*Seventh part works*/
+
+UPDATE friends
+SET email = 'dolores@codecademy.com'
+WHERE id = 2;
+
+/*Eighth part works*/
+
+UPDATE friends
+SET email = 'maeve@codecademy.com'
+WHERE id = 3;
+
+/*Ninth part works*/
+
+DELETE FROM friends
+WHERE id = 1;
+
+/*Final part works!*/
+
+SELECT * FROM friends;
