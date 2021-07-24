@@ -1,0 +1,43 @@
+-- Is a small percentage of Hacker News submitters taking the majority of the points? Only viewing scores above 200. 
+
+SELECT user, 
+SUM(score)
+FROM hacker_news
+GROUP BY 1
+HAVING SUM(score) > 200
+ORDER BY 2 DESC;
+
+
+-- Which users are rick-rolling others, and how many times have they done it?
+SELECT user, 
+COUNT(*)
+FROM hacker_news
+WHERE url LIKE '%watch?v=dQw4w9WgXcQ%'
+GROUP BY user
+ORDER BY COUNT(*) DESC;
+
+
+
+-- Which sites feed Hacker News? Grouped by URL.
+
+SELECT CASE
+WHEN url LIKE '%github%' THEN 'Github'
+WHEN url LIKE '%medium.com%' THEN 'Medium'
+WHEN url LIKE '%nytimes.com%' THEN 'New York Times'
+ELSE 'Other'
+END AS 'Source',
+COUNT(*)
+FROM hacker_news
+GROUP BY 1;
+
+
+
+-- What's the best time to post a story?
+SELECT strftime('%H', timestamp),
+ROUND(AVG(score), 1) AS 'Average Score',
+COUNT(*) AS 'Number of Stories'
+FROM hacker_news
+WHERE timestamp IS NOT NULL
+GROUP BY 1
+ORDER BY 1;
+
